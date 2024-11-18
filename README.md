@@ -1,50 +1,70 @@
-# React + TypeScript + Vite
+# 📋 Application "ArguMate"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Objectif
 
-Currently, two official plugins are available:
+Créer une application React en TypeScript pour gérer des listes de pour et contre. L'utilisateur pourra ajouter des arguments pour chaque côté, voir un décompte des arguments, et supprimer des éléments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🗂️ Plan du projet
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1. **Phase de conception**
 
-- Configure the top-level `parserOptions` property like this:
+- Définir le nom de l'application : **ArguMate**.
+- Réfléchir à une interface utilisateur simple et intuitive.
+- Choisir un style visuel avec Tailwind CSS.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 2. **Structure des composants**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- `App`: Composant principal qui gère l'état global.
+- `Header`: Affiche le titre de l'application.
+- `ArgumentList`: Contient deux sous-composants :
+  - `ProsList`: Liste des arguments "Pour".
+  - `ConsList`: Liste des arguments "Contre".
+- `ArgumentForm`: Formulaire pour ajouter des arguments.
+- `ArgumentItem`: Représente un argument individuel avec un bouton pour le supprimer.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 3. **État et gestion des données**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Utiliser `useState` pour gérer les listes d'arguments.
+- Définir un type TypeScript pour chaque argument :
+  ```typescript
+  type Argument = {
+    id: string
+    text: string
+    type: "pour" | "contre"
+  }
+  ```
+
+### 4. **Interactions et fonctionnalités**
+
+- **Ajouter des arguments** : L'utilisateur peut ajouter des arguments via un formulaire.
+- **Supprimer des arguments** : L'utilisateur peut supprimer un argument de la liste.
+- **Afficher un compteur** : Afficher le nombre d'arguments pour chaque côté ("Pour" et "Contre").
+- **Calculer la différence** : Afficher la différence entre le nombre de "Pour" et de "Contre".
+
+### 5. **Style et design**
+
+- **Utiliser Tailwind CSS** : Appliquer un design moderne et épuré.
+- **Responsive Design** : Assurer un affichage adaptatif pour toutes les tailles d'écran.
+- **Couleurs distinctes** : Utiliser des couleurs différentes pour distinguer les arguments "Pour" et "Contre".
+
+### 6. **Fonctionnalités supplémentaires (optionnelles)**
+
+- **Réorganisation des arguments** : Ajouter la possibilité de réorganiser les arguments via drag-and-drop.
+- **Marquer comme important** : Permettre de marquer un argument comme "important" pour le mettre en avant.
+- **Sauvegarde dans le localStorage** : Enregistrer les arguments dans le `localStorage` pour persister les données entre les sessions.
+
+### 7. **Améliorations futures**
+
+- **Exportation des arguments** : Ajouter une option pour exporter les arguments sous forme de fichier texte.
+- **Partage des listes** : Permettre aux utilisateurs de partager leur liste d'arguments via un lien unique.
+- **Système de vote** : Ajouter un système de vote pour chaque argument afin que les utilisateurs puissent voter "Pour" ou "Contre".
+
+---
+
+## 🛠️ Technologies utilisées
+
+- **React** pour la gestion des composants.
+- **TypeScript** pour la sécurité et la lisibilité du code.
+- **Tailwind CSS** pour le style.
